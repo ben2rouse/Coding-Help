@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Python Basics – Class Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#0f172a;          /* dark slate */
+      --card:#111827;        /* near-black */
+      --text:#e5e7eb;        /* light gray */
+      --muted:#9ca3af;       /* muted gray */
+      --accent:#60a5fa;      /* blue */
+      --green:#34d399;       /* green */
+      --orange:#fb923c;      /* orange */
+      --pink:#f472b6;        /* pink */
+      --yellow:#facc15;      /* yellow */
+      --red:#f87171;         /* red */
+    }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font:16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
+    .wrap { max-width: 980px; margin: 36px auto; padding: 0 20px; }
+    h1 { font-size: 2.2rem; margin: 0 0 6px; }
+    .subtitle { color: var(--muted); margin-bottom: 24px; }
+    h2 { margin: 28px 0 12px; font-size: 1.6rem; }
+    h3 { margin: 22px 0 10px; font-size: 1.15rem; color: var(--accent); }
+    p { margin: 10px 0; }
+    .card {
+      background: linear-gradient(180deg, #131a33 0%, var(--card) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 18px 18px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      margin: 16px 0 22px;
+    }
+    .tag { display: inline-block; font-size: 0.8rem; padding: 2px 8px; border-radius: 999px; margin-right: 6px; border: 1px solid rgba(255,255,255,0.15); color: var(--muted);}
+    .callout { border-left: 4px solid var(--accent); background: rgba(96,165,250,0.08); padding: 10px 12px; border-radius: 10px; }
+    .ops { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 10px; }
+    .ops .chip {
+      border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:10px 12px; background:rgba(255,255,255,0.03);
+    }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    pre {
+      background: #0b1024; color: #e7eaf3; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 14px; overflow:auto; margin: 12px 0;
+    }
+    .inline { background: rgba(255,255,255,0.08); padding: 1px 6px; border-radius: 6px; }
+    .footer { color: var(--muted); font-size: .9rem; margin-top: 28px; }
+    a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Python Basics – Class Notes</h1>
+    <p class="subtitle">Simple explanations + small examples to help you practice.</p>
+
+    <!-- VARIABLES -->
+    <section class="card">
+      <span class="tag">Variables</span>
+      <h2>Variables (int, str, bool, float)</h2>
+      <p>
+        Think of a variable like a <b>labeled mailbox</b> that stores something for you.
+        The label is the <b>name</b>, and inside is the <b>value</b>.
+      </p>
+      <div class="ops">
+        <div class="chip"><b>int</b> → whole numbers (e.g., <span class="inline">7</span>, <span class="inline">-2</span>)</div>
+        <div class="chip"><b>float</b> → decimals (e.g., <span class="inline">5.6</span>, <span class="inline">3.14</span>)</div>
+        <div class="chip"><b>str</b> → text/strings (e.g., <span class="inline">"hello"</span>)</div>
+        <div class="chip"><b>bool</b> → True or False</div>
+      </div>
+      <pre><code># Make some mailboxes:
+age = 13          # int
+height = 5.6      # float
+name = "Jordan"   # str
+likes_pizza = True  # bool
+
+# You can use them later:
+print(name, "is", age, "years old.")</code></pre>
+    </section>
+
+    <!-- PRINTING -->
+    <section class="card">
+      <span class="tag">Printing</span>
+      <h2>Printing in Python</h2>
+      <p><b>Printing</b> means showing information on the screen.</p>
+      <h3>Commas vs <span class="inline">+</span> in <span class="inline">print()</span></h3>
+      <p>
+        <b>Commas</b> automatically put spaces and can mix types easily.<br>
+        <b><span class="inline">+</span></b> <i>joins strings</i> only — so you must convert numbers to strings first.
+      </p>
+      <pre><code># Using commas (easy mixing):
+age = 13
+print("I am", age, "years old.")  # no need to convert
+
+# Using + (string only):
+name = "Jordan"
+print("Hello, my name is " + name)     # works
+# print("I am " + age + " years old.") # ❌ error: age is an int
+print("I am " + str(age) + " years old.")  # ✅ convert with str()</code></pre>
+      <div class="callout">
+        <b>Tip:</b> If something isn’t a string yet (like numbers), wrap it with <span class="inline">str(...)</span> when using <span class="inline">+</span>.
+      </div>
+    </section>
+
+    <!-- LOOPS -->
+    <section class="card">
+      <span class="tag">Loops</span>
+      <h2>Loops</h2>
+      <p>
+        Loops repeat code for you. Two kinds we use now:
+        <br><b>for</b> → repeat a set number of times.
+        <br><b>while</b> → keep going <i>until</i> a condition is False.
+      </p>
+      <h3>for loop (repeat N times)</h3>
+      <pre><code># Count from 1 to 5
+for i in range(1, 6):
+    print("Counting:", i)</code></pre>
+
+      <h3>while loop (repeat until condition is met)</h3>
+      <pre><code># Keep going until num reaches 5
+num = 1
+while num &lt;= 5:
+    print("num is", num)
+    num = num + 1  # don't forget to change num!</code></pre>
+      <div class="callout">
+        <b>Important:</b> A while loop needs something in the loop to eventually make the condition False, or it will run forever.
+      </div>
+    </section>
+
+    <!-- TYPE CONVERSION -->
+    <section class="card">
+      <span class="tag">Types</span>
+      <h2>Type Conversion (changing types)</h2>
+      <p>Sometimes you need to change a value’s type. Use these:</p>
+      <div class="ops">
+        <div class="chip"><b>str(x)</b> → make text</div>
+        <div class="chip"><b>int(x)</b> → make an int (whole number)</div>
+        <div class="chip"><b>float(x)</b> → make a decimal</div>
+        <div class="chip"><b>bool(x)</b> → make True/False</div>
+      </div>
+      <pre><code>age_text = "13"
+age_number = int(age_text)   # "13" → 13
+
+height = 5.6
+height_text = str(height)    # 5.6 → "5.6"
+
+print("Age as number:", age_number)
+print("Height as text:", height_text)</code></pre>
+    </section>
+
+    <!-- MATH -->
+    <section class="card">
+      <span class="tag">Math</span>
+      <h2>Math Operations</h2>
+      <div class="ops">
+        <div class="chip"><b>+</b> add</div>
+        <div class="chip"><b>-</b> subtract</div>
+        <div class="chip"><b>*</b> multiply</div>
+        <div class="chip"><b>/</b> divide (gives float)</div>
+        <div class="chip"><b>//</b> floor divide (drops decimals)</div>
+        <div class="chip"><b>%</b> remainder (modulo)</div>
+        <div class="chip"><b>**</b> power (exponent)</div>
+      </div>
+      <pre><code>a = 10
+b = 3
+print("a + b =", a + b)    # 13
+print("a - b =", a - b)    # 7
+print("a * b =", a * b)    # 30
+print("a / b =", a / b)    # 3.333...
+print("a // b =", a // b)  # 3
+print("a % b =", a % b)    # 1
+print("a ** b =", a ** b)  # 1000</code></pre>
+      <div class="callout">
+        <b>Use cases:</b> <span class="inline">%</span> is great for checking even/odd: <span class="inline">n % 2 == 0</span> means even.
+      </div>
+    </section>
+
+    <!-- INPUT & OUTPUT -->
+    <section class="card">
+      <span class="tag">I/O</span>
+      <h2>Input &amp; Output</h2>
+      <p>
+        <b>Input</b> = the computer reads what you type. (It always comes in as text/str.)<br>
+        <b>Output</b> = the computer prints information to the screen.
+      </p>
+      <pre><code># Ask for info (input → str), then convert if needed:
+name = input("What is your name? ")
+age_text = input("How old are you? ")
+age = int(age_text)  # now age is a number (int)
+
+print("Hello,", name, "! Next year you will be", age + 1)
+
+# Shortcut: convert directly
+score = int(input("Enter your score: "))  # str → int in one line
+height = float(input("Enter your height: "))  # str → float</code></pre>
+    </section>
+
+    <!-- CONDITIONS & OPERATORS -->
+    <section class="card">
+      <span class="tag">Conditions</span>
+      <h2>Conditions &amp; Operators</h2>
+      <p>
+        Conditions let your code make decisions. We use <b>comparison operators</b> to check things:
+      </p>
+      <div class="ops">
+        <div class="chip"><b>==</b> equal to</div>
+        <div class="chip"><b>!=</b> not equal to</div>
+        <div class="chip"><b>&gt;</b> greater than</div>
+        <div class="chip"><b>&lt;</b> less than</div>
+        <div class="chip"><b>&gt;=</b> greater or equal</div>
+        <div class="chip"><b>&lt;=</b> less or equal</div>
+      </div>
+      <pre><code>score = 75
+
+if score >= 90:
+    print("Grade: A")
+elif score >= 80:
+    print("Grade: B")
+elif score >= 70:
+    print("Grade: C")
+else:
+    print("Keep practicing!")</code></pre>
+      <h3>Logic (and / or)</h3>
+      <p>
+        Combine checks with <b>and</b> (both must be True) or <b>or</b> (at least one is True).
+      </p>
+      <pre><code>age = 13
+age = 12
+year = 2000
+
+if (age == 12) and (year == 2000):
+    print("You are 12 in the year 2000!")
+else:
+    print("Condition not met.")</code></pre>
+    </section>
+
+    <p class="footer">Tip: Try these in a browser-based Python (e.g., Replit, Trinket, or PythonTutor) if you don’t want to install anything yet.</p>
+  </div>
+</body>
+</html>
