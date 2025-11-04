@@ -53,7 +53,7 @@
     <p class="subtitle">Simple explanations + small examples to help you practice.</p>
 
     <!-- VARIABLES -->
-    <section class="card">
+    <section class="card" id="variables">
       <span class="tag">Variables</span>
       <h2>Variables (int, str, bool, float)</h2>
       <p>
@@ -77,7 +77,7 @@ print(name, "is", age, "years old.")</code></pre>
     </section>
 
     <!-- PRINTING -->
-    <section class="card">
+    <section class="card" id="printing">
       <span class="tag">Printing</span>
       <h2>Printing in Python</h2>
       <p><b>Printing</b> means showing information on the screen.</p>
@@ -101,7 +101,7 @@ print("I am " + str(age) + " years old.")  # ✅ convert with str()</code></pre>
     </section>
 
     <!-- LOOPS -->
-    <section class="card">
+    <section class="card" id="loops">
       <span class="tag">Loops</span>
       <h2>Loops</h2>
       <p>
@@ -126,7 +126,7 @@ while num &lt;= 5:
     </section>
 
     <!-- TYPE CONVERSION -->
-    <section class="card">
+    <section class="card" id="types">
       <span class="tag">Types</span>
       <h2>Type Conversion (changing types)</h2>
       <p>Sometimes you need to change a value’s type. Use these:</p>
@@ -146,20 +146,20 @@ print("Age as number:", age_number)
 print("Height as text:", height_text)</code></pre>
     </section>
 
-    <!-- MATH -->
-    <section class="card">
-      <span class="tag">Math</span>
-      <h2>Math Operations</h2>
-      <div class="ops">
-        <div class="chip"><b>+</b> add</div>
-        <div class="chip"><b>-</b> subtract</div>
-        <div class="chip"><b>*</b> multiply</div>
-        <div class="chip"><b>/</b> divide (gives float)</div>
-        <div class="chip"><b>//</b> floor divide (drops decimals)</div>
-        <div class="chip"><b>%</b> remainder (modulo)</div>
-        <div class="chip"><b>**</b> power (exponent)</div>
-      </div>
-      <pre><code>a = 10
+<!-- MATH -->
+<section class="card" id="math">
+  <span class="tag">Math</span>
+  <h2>Math Operations</h2>
+  <div class="ops">
+    <div class="chip"><b>+</b> add</div>
+    <div class="chip"><b>-</b> subtract</div>
+    <div class="chip"><b>*</b> multiply</div>
+    <div class="chip"><b>/</b> divide (gives float)</div>
+    <div class="chip"><b>//</b> floor divide (drops decimals)</div>
+    <div class="chip"><b>%</b> remainder (modulo)</div>
+    <div class="chip"><b>**</b> power (exponent)</div>
+  </div>
+  <pre><code>a = 10
 b = 3
 print("a + b =", a + b)    # 13
 print("a - b =", a - b)    # 7
@@ -167,14 +167,42 @@ print("a * b =", a * b)    # 30
 print("a / b =", a / b)    # 3.333...
 print("a // b =", a // b)  # 3
 print("a % b =", a % b)    # 1
-print("a ** b =", a ** b)  # 1000</code></pre>
-      <div class="callout">
-        <b>Use cases:</b> <span class="inline">%</span> is great for checking even/odd: <span class="inline">n % 2 == 0</span> means even.
-      </div>
-    </section>
+print("a ** b =", a ** b)  # 1000
+</code></pre>
+
+  <div class="callout">
+    <b>Use cases:</b> <span class="inline">%</span> is great for checking even/odd: <span class="inline">n % 2 == 0</span> means even.
+  </div>
+
+  <h3>Using Random Numbers</h3>
+  <p>
+    Python’s <b>random</b> library lets you create random numbers for math games and challenges.
+    You can use it for guessing games, quizzes, or generating random scores.
+  </p>
+
+  <pre><code>import random
+
+# Pick a random integer between 1 and 10 (inclusive)
+num = random.randint(1, 10)
+print("Random number:", num)
+
+# Pick a random floating-point number between 0 and 1
+decimal = random.random()
+print("Random decimal:", decimal)
+
+# Choose a random item from a list
+choice = random.choice(["add", "subtract", "multiply", "divide"])
+print("Random math choice:", choice)
+</code></pre>
+
+  <div class="callout">
+    <b>Tip:</b> Every time you run the program, random numbers change.
+    Use <span class="inline">import random</span> once at the top of your code to start using it.
+  </div>
+</section>
 
     <!-- INPUT & OUTPUT -->
-    <section class="card">
+    <section class="card" id="io">
       <span class="tag">I/O</span>
       <h2>Input &amp; Output</h2>
       <p>
@@ -194,7 +222,7 @@ height = float(input("Enter your height: "))  # str → float</code></pre>
     </section>
 
     <!-- CONDITIONS & OPERATORS -->
-    <section class="card">
+    <section class="card" id="conditions">
       <span class="tag">Conditions</span>
       <h2>Conditions &amp; Operators</h2>
       <p>
