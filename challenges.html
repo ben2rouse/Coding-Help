@@ -78,7 +78,7 @@
     <!-- Code Saver Panel -->
     <section class="card" id="code-saver">
       <h2>Save your code between classes</h2>
-      <p>Paste your Python here and save it under your name + challenge. You can load it later on any computer using the share link or by downloading a file.</p>
+      <p>Paste your Python here. Then use <b>Copy Formatted Summary</b> to copy your <i>Name</i> + <i>Challenge</i> + a clickable <i>Code Link</i> (perfect for the class Google Doc), or use <b>Copy Code</b> to copy just the code.</p>
       <div class="control-row">
         <label for="cs-name">Name</label>
         <input id="cs-name" class="field small" type="text" placeholder="First Last" />
@@ -100,16 +100,11 @@
       </div>
       <textarea id="cs-code" class="field" rows="10" style="width:100%; margin-top:10px;" placeholder="# Paste your Python solution here...\n# Example: print(\"Hello\")"></textarea>
       <div class="control-row" style="margin-top:10px;">
-        <button class="btn" id="cs-save">Save locally</button>
-        <button class="btn" id="cs-load">Load</button>
         <button class="btn" id="cs-copy">Copy code</button>
-        <button class="btn" id="cs-link">Copy share link</button>
-        <button class="btn" id="cs-summary">Copy summary</button>
-        <button class="btn secondary" id="cs-download">Download .py</button>
-        <button class="btn warn" id="cs-clear">Clear local save</button>
+        <button class="btn" id="cs-formatted-summary">Copy Formatted Summary</button>
       </div>
       <div class="callout" style="margin-top:10px;">
-        <b>How this works:</b> “Save locally” keeps your code in this browser only. “Copy share link” makes a link that <i>contains your code</i> so you can open it anywhere (don’t share secrets). “Download .py” saves a file you can upload or open later. No account needed.
+        <b>How this works:</b> The formatted summary includes your name, the challenge title, and a <i>Code Link</i> that restores your code when opened. Paste it into the class Google Doc so you can resume later from any computer.
       </div>
     </section>
 
@@ -467,32 +462,6 @@ You got 5 out of 5</code></pre>
       const chalEl = document.getElementById('cs-challenge');
       const codeEl = document.getElementById('cs-code');
 
-      const STORAGE_PREFIX = 'code_saver_v1';
-      const keyFor = (name, chal) => `${STORAGE_PREFIX}:${(name||'').trim().toLowerCase()}|${String(chal||'').trim()}`;
-
-      function saveLocal(){
-        const name = nameEl.value.trim();
-        const chal = chalEl.value;
-        const code = codeEl.value;
-        if(!name){ alert('Please enter your name.'); return; }
-        if(!chal){ alert('Please choose a challenge.'); return; }
-        try{
-          localStorage.setItem(keyFor(name, chal), code);
-          alert('Saved locally.');
-        }catch(e){
-          alert('Could not save locally (storage might be full or blocked).');
-        }
-      }
-
-      function loadLocal(){
-        const name = nameEl.value.trim();
-        const chal = chalEl.value;
-        if(!name){ alert('Please enter your name to load.'); return; }
-        const data = localStorage.getItem(keyFor(name, chal));
-        if(data == null){ alert('No local save found for this name + challenge.'); return; }
-        codeEl.value = data;
-      }
-
       function copyCode(){
         codeEl.select();
         document.execCommand('copy');
@@ -506,25 +475,7 @@ You got 5 out of 5</code></pre>
         return decodeURIComponent(escape(atob(b64)));
       }
 
-      function copyShareLink(){
-        const name = nameEl.value.trim();
-        const chal = chalEl.value;
-        const code = codeEl.value;
-        if(!name){ alert('Please enter your name.'); return; }
-        if(!chal){ alert('Please choose a challenge.'); return; }
-        if(!code){ alert('Nothing to share — paste your code first.'); return; }
-        const params = new URLSearchParams({ name, chal });
-        const encoded = encodeBase64(code);
-        const url = `${location.origin}${location.pathname}?${params.toString()}#cs:${encoded}`;
-        navigator.clipboard.writeText(url).then(()=>{
-          alert('Share link copied to clipboard. Open it later to restore your code.');
-        }).catch(()=>{
-          // fallback
-          prompt('Copy this link:', url);
-        });
-      }
-
-      function copySummary(){
+      async function copyFormattedSummary(){
         const name = nameEl.value.trim();
         const chal = chalEl.value;
         const code = codeEl.value;
@@ -535,49 +486,43 @@ You got 5 out of 5</code></pre>
         const params = new URLSearchParams({ name, chal });
         const encoded = encodeBase64(code);
         const url = `${location.origin}${location.pathname}?${params.toString()}#cs:${encoded}`;
-        const summary = `${name} — ${chalText} — ${url}`;
-        navigator.clipboard.writeText(summary).then(()=>{
-          alert('Summary copied to clipboard.');
-        }).catch(()=>{
-          // fallback
-          prompt('Copy this summary:', summary);
-        });
-      }
-
-      function downloadFile(){
-        const name = (nameEl.value.trim() || 'student').replace(/[^a-z0-9-_]+/gi,'_');
-        const chal = chalEl.value;
-        const code = codeEl.value || '';
-        const blob = new Blob([code], { type: 'text/x-python' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = `challenge-${chal}-${name}.py`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(()=>URL.revokeObjectURL(a.href), 5000);
-      }
-
-      function clearLocal(){
-        const name = nameEl.value.trim();
-        const chal = chalEl.value;
-        if(!name){ alert('Enter your name to clear the correct slot.'); return; }
-        const k = keyFor(name, chal);
-        if(localStorage.getItem(k) == null){ alert('Nothing saved for this name + challenge.'); return; }
-        if(confirm('Delete the local save for this name + challenge?')){
-          localStorage.removeItem(k);
-          alert('Local save cleared.');
+        const html = `${name} — ${chalText} — <a href="${url}">Code Link</a>`;
+        const fallback = `${name} — ${chalText} — ${url}`;
+        try{
+          if (navigator.clipboard && window.ClipboardItem) {
+            const item = new ClipboardItem({
+              'text/html': new Blob([html], { type: 'text/html' }),
+              'text/plain': new Blob([fallback], { type: 'text/plain' })
+            });
+            await navigator.clipboard.write([item]);
+          } else {
+            // Fallback: copy via hidden contenteditable element
+            const div = document.createElement('div');
+            div.contentEditable = 'true';
+            div.innerHTML = html;
+            div.style.position = 'fixed';
+            div.style.opacity = '0';
+            document.body.appendChild(div);
+            const range = document.createRange();
+            range.selectNodeContents(div);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            const ok = document.execCommand('copy');
+            sel.removeAllRanges();
+            div.remove();
+            if(!ok) throw new Error('execCommand copy failed');
+          }
+          alert('Formatted summary copied. Paste into Google Docs.');
+        }catch(e){
+          // Last resort: show prompt
+          prompt('Copy this summary:', fallback);
         }
       }
 
       // Wire up buttons
-      document.getElementById('cs-save').addEventListener('click', saveLocal);
-      document.getElementById('cs-load').addEventListener('click', loadLocal);
       document.getElementById('cs-copy').addEventListener('click', copyCode);
-      document.getElementById('cs-link').addEventListener('click', copyShareLink);
-  document.getElementById('cs-summary').addEventListener('click', copySummary);
-      document.getElementById('cs-download').addEventListener('click', downloadFile);
-      document.getElementById('cs-clear').addEventListener('click', clearLocal);
+    document.getElementById('cs-formatted-summary').addEventListener('click', copyFormattedSummary);
 
       // On load: check URL for share payload and restore
       (function restoreFromUrl(){
