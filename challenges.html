@@ -72,10 +72,34 @@
         <h3>1) Tip Calculator</h3>
         <p><b>Goal:</b> Ask for a bill total and a tip percent. Calculate the tip and the final total. Print both nicely.</p>
         <ul class="steps">
-          <li>Get two inputs: bill (like <span class="inline">"42.50"</span>) and tip percent (like <span class="inline">"18"</span>).</li>
-          <li>Convert to numbers with <span class="inline">float()</span> or <span class="inline">int()</span>.</li>
-          <li>Compute: <span class="inline">tip = bill * (percent/100)</span>, <span class="inline">total = bill + tip</span>.</li>
-          <li>Print the tip and total with labels.</li>
+          <li><b>What to build:</b> A short program that reads a bill amount and a tip percent, then prints the tip and the grand total.</li>
+          <li><b>Inputs:</b>
+            <ul>
+              <li><span class="inline">bill</span>: a positive number, may include cents (e.g., <span class="inline">42.50</span>).</li>
+              <li><span class="inline">percent</span>: a whole number from 0–100 (e.g., <span class="inline">18</span> for 18%).</li>
+            </ul>
+          </li>
+          <li><b>Process:</b>
+            <ul>
+              <li>Convert inputs using <span class="inline">float()</span> (for bill) and <span class="inline">int()</span> (for percent).</li>
+              <li>Compute <span class="inline">tip = bill * (percent / 100)</span>.</li>
+              <li>Compute <span class="inline">total = bill + tip</span>.</li>
+              <li>Round both tip and total to <b>exactly 2 decimal places</b> when printing.</li>
+            </ul>
+          </li>
+          <li><b>Output (exact labels):</b>
+            <ul>
+              <li><span class="inline">Tip: $X.XX</span></li>
+              <li><span class="inline">Total: $Y.YY</span></li>
+            </ul>
+          </li>
+          <li><b>Rules:</b> Don’t include the <span class="inline">$</span> in inputs. If the percent is <span class="inline">0</span>, the tip is <span class="inline">$0.00</span>.</li>
+          <li><b>Example run:</b>
+            <pre><code>Bill amount: 42.50
+Tip percent: 18
+Tip: $7.65
+Total: $50.15</code></pre>
+          </li>
         </ul>
         <p class="links">See: <a href="index.html#types">Type Conversion</a> • <a href="index.html#math">Math</a> • <a href="index.html#printing">Printing</a></p>
       </section>
@@ -86,9 +110,19 @@
         <h3>2) Even or Odd Checker</h3>
         <p><b>Goal:</b> Ask for a number and tell the user if it’s even or odd.</p>
         <ul class="steps">
-          <li>Input a number → convert to <span class="inline">int</span>.</li>
-          <li>Use the <b>modulo</b> operator <span class="inline">%</span> to find the remainder when dividing by 2.</li>
-          <li>If <span class="inline">n % 2 == 0</span> → “even”, else “odd”.</li>
+          <li><b>Input:</b> one integer (e.g., <span class="inline">7</span>). Convert with <span class="inline">int()</span>.</li>
+          <li><b>Logic:</b> Use modulo <span class="inline">%</span> with 2.
+            <ul>
+              <li>If <span class="inline">n % 2 == 0</span> → print <span class="inline">"even"</span>.</li>
+              <li>Else → print <span class="inline">"odd"</span>.</li>
+            </ul>
+          </li>
+          <li><b>Output:</b> print only the word <span class="inline">"even"</span> or <span class="inline">"odd"</span> (all lowercase), nothing else.</li>
+          <li><b>Edge cases:</b> <span class="inline">0</span> is even. Negative numbers follow the same rule.</li>
+          <li><b>Example:</b>
+            <pre><code>Number: 14
+even</code></pre>
+          </li>
         </ul>
         <div class="callout">
           <b>Reminder:</b> <span class="inline">a % b</span> gives the <i>remainder</i>. Example: <span class="inline">7 % 2</span> is <span class="inline">1</span>.
@@ -102,9 +136,16 @@
         <h3>3) Counting Loop</h3>
         <p><b>Goal:</b> Print “Counting: 1” up to “Counting: 10”.</p>
         <ul class="steps">
-          <li>Use a <span class="inline">for</span> loop with <span class="inline">range(1, 11)</span>.</li>
-          <li>Print the message each time through the loop.</li>
+          <li><b>No input.</b> The program just prints a fixed sequence.</li>
+          <li><b>Loop:</b> use a <span class="inline">for</span> loop with <span class="inline">range(1, 11)</span>.</li>
+          <li><b>Output format:</b> each line exactly like <span class="inline">Counting: 1</span>, <span class="inline">Counting: 2</span>, … , <span class="inline">Counting: 10</span>.</li>
         </ul>
+        <pre><code># Expected output
+Counting: 1
+Counting: 2
+Counting: 3
+...
+Counting: 10</code></pre>
         <pre><code># Hint pattern (not the full answer):
 for i in range(START, STOP):
     print("Counting:", i)</code></pre>
@@ -120,8 +161,22 @@ for i in range(START, STOP):
         <h3>4) Repeat My Sentence</h3>
         <p><b>Goal:</b> Ask the user for a short sentence and how many times to repeat it. Then print it that many times.</p>
         <ul class="steps">
-          <li>Get sentence (string) and count (convert to <span class="inline">int</span>).</li>
-          <li>Loop with <span class="inline">range(count)</span> and print the sentence.</li>
+          <li><b>Inputs:</b>
+            <ul>
+              <li><span class="inline">sentence</span>: any non-empty string.</li>
+              <li><span class="inline">count</span>: an integer <span class="inline">&gt;= 0</span>.</li>
+            </ul>
+          </li>
+          <li><b>Loop:</b> run <span class="inline">count</span> times using <span class="inline">range(count)</span>.</li>
+          <li><b>Output:</b> print the <b>exact</b> sentence on its own line each time. No numbering, no extra characters.</li>
+          <li><b>Edge cases:</b> if <span class="inline">count</span> is <span class="inline">0</span>, print nothing.</li>
+          <li><b>Example:</b>
+            <pre><code>Sentence: Hi there!
+Times: 3
+Hi there!
+Hi there!
+Hi there!</code></pre>
+          </li>
         </ul>
         <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#types">Type Conversion</a></p>
       </section>
@@ -132,9 +187,23 @@ for i in range(START, STOP):
         <h3>5) Simple Guessing Game</h3>
         <p><b>Goal:</b> Pick a secret number in your code. Keep asking the user to guess until they get it right.</p>
         <ul class="steps">
-          <li>Make <span class="inline">secret = 7</span> (or any number).</li>
-          <li>Use a <span class="inline">while</span> loop that runs while the guess is not equal to the secret.</li>
-          <li>Tell the user “Too high” / “Too low” each time.</li>
+          <li><b>Setup:</b> Choose a secret integer in your code (e.g., <span class="inline">secret = 7</span>).</li>
+          <li><b>Loop:</b> Use a <span class="inline">while</span> loop. Ask for a guess each time. Convert it with <span class="inline">int()</span>.</li>
+          <li><b>Feedback:</b>
+            <ul>
+              <li>If guess < secret → print <span class="inline">"Too low"</span>.</li>
+              <li>If guess > secret → print <span class="inline">"Too high"</span>.</li>
+            </ul>
+          </li>
+          <li><b>Win message:</b> when correct, print <span class="inline">"You got it in X tries."</span> where <span class="inline">X</span> is the number of guesses.</li>
+          <li><b>Example transcript:</b>
+            <pre><code>Guess a number: 3
+Too low
+Guess a number: 9
+Too high
+Guess a number: 7
+You got it in 3 tries.</code></pre>
+          </li>
         </ul>
         <div class="callout">
           <b>How while works:</b> It keeps repeating <i>while the condition is True</i>. Change something inside the loop so it can eventually stop.
@@ -148,9 +217,19 @@ for i in range(START, STOP):
         <h3>6) Countdown Timer</h3>
         <p><b>Goal:</b> Ask the user for a start number and count down to 1, then print “Blast off!”.</p>
         <ul class="steps">
-          <li>Convert the input to <span class="inline">int</span>.</li>
-          <li>Use <span class="inline">range(start, 0, -1)</span> to go down by 1.</li>
-          <li>Print each number; after the loop, print “Blast off!”.</li>
+          <li><b>Input:</b> <span class="inline">start</span> as an integer.</li>
+          <li><b>Loop:</b> use <span class="inline">range(start, 0, -1)</span> to go down by 1.</li>
+          <li><b>Output:</b> print each number on its own line; after the loop print <span class="inline">Blast off!</span>.</li>
+          <li><b>Validation (simple):</b> if <span class="inline">start &lt; 1</span>, print <span class="inline">Enter a number 1 or greater.</span> and stop.</li>
+          <li><b>Example:</b>
+            <pre><code>Start at: 5
+5
+4
+3
+2
+1
+Blast off!</code></pre>
+          </li>
         </ul>
         <div class="callout">
           <b>range(start, stop, step):</b> stop is not included. Use a <b>negative step</b> (like <span class="inline">-1</span>) to count backwards.
@@ -167,8 +246,38 @@ for i in range(START, STOP):
         <h3>7) Simple Bank Balance</h3>
         <p><b>Goal:</b> Start with a balance (e.g., 100). Show a menu to <i>check</i>, <i>deposit</i>, <i>withdraw</i>, or <i>exit</i>. Repeat until exit.</p>
         <ul class="steps">
-          <li>Use a <span class="inline">while</span> loop to keep showing the menu.</li>
-          <li><b>1</b> → print balance, <b>2</b> → add amount, <b>3</b> → subtract amount (if enough money), <b>4</b> → break the loop.</li>
+          <li><b>Start:</b> <span class="inline">balance = 100.00</span> (float).</li>
+          <li><b>Menu (repeat until exit):</b>
+            <pre><code>1) Check balance
+2) Deposit
+3) Withdraw
+4) Exit</code></pre>
+          </li>
+          <li><b>Actions:</b>
+            <ul>
+              <li><b>1</b> → print <span class="inline">Balance: $X.XX</span>.</li>
+              <li><b>2</b> → read amount (float &gt;= 0), add to balance, then print new balance.</li>
+              <li><b>3</b> → read amount (float &gt;= 0). If amount &lt;= balance, subtract and print new balance; else print <span class="inline">Insufficient funds.</span></li>
+              <li><b>4</b> → print <span class="inline">Goodbye!</span> and stop the loop.</li>
+            </ul>
+          </li>
+          <li><b>Formatting:</b> Always print money with <b>2 decimals</b>.</li>
+          <li><b>Sample session:</b>
+            <pre><code>1) Check balance
+2) Deposit
+3) Withdraw
+4) Exit
+Choose: 1
+Balance: $100.00
+Choose: 2
+Amount: 25.5
+Balance: $125.50
+Choose: 3
+Amount: 200
+Insufficient funds.
+Choose: 4
+Goodbye!</code></pre>
+          </li>
         </ul>
         <pre><code># Mini pattern:
 running = True
@@ -185,8 +294,15 @@ while running:
         <h3>8) Multiplication Table</h3>
         <p><b>Goal:</b> Ask for a number (like 7) and print its times table from 1 to 10.</p>
         <ul class="steps">
-          <li>Loop from 1 to 10 with <span class="inline">range(1, 11)</span>.</li>
-          <li>Compute and print <span class="inline">n * i</span> each time.</li>
+          <li><b>Input:</b> integer <span class="inline">n</span>.</li>
+          <li><b>Loop:</b> for <span class="inline">i</span> in <span class="inline">range(1, 11)</span> compute <span class="inline">n * i</span>.</li>
+          <li><b>Output format:</b> print lines like <span class="inline">n x i = result</span>.</li>
+          <li><b>Example (n = 7):</b>
+            <pre><code>7 x 1 = 7
+7 x 2 = 14
+...
+7 x 10 = 70</code></pre>
+          </li>
         </ul>
         <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#math">Math</a></p>
       </section>
@@ -197,8 +313,17 @@ while running:
         <h3>9) Name Banner</h3>
         <p><b>Goal:</b> Ask the user for their name and a number. Print a “banner” of their name that many lines tall.</p>
         <ul class="steps">
-          <li>Get <span class="inline">name</span> and <span class="inline">height</span> (int).</li>
-          <li>Use a loop to print the name on each line. Try adding decorations like <span class="inline">*** NAME ***</span>.</li>
+          <li><b>Inputs:</b> <span class="inline">name</span> (string) and <span class="inline">height</span> (int &gt;= 1).</li>
+          <li><b>Loop:</b> print the name exactly as entered on each line, repeating <span class="inline">height</span> times.</li>
+          <li><b>Output:</b> one name per line, no extra characters required.</li>
+          <li><b>Example:</b>
+            <pre><code>Name: Ada
+Height: 3
+Ada
+Ada
+Ada</code></pre>
+          </li>
+          <li><b>Optional flair:</b> add decorations like <span class="inline">*** NAME ***</span> if you want.</li>
         </ul>
         <p class="links">See: <a href="index.html#printing">Printing</a> • <a href="index.html#loops">Loops</a></p>
       </section>
@@ -212,9 +337,17 @@ while running:
         <h3>10) Number Pattern</h3>
         <p><b>Goal:</b> Print a pattern like: <code>1</code>, <code>1 2</code>, <code>1 2 3</code>, up to a number the user chooses.</p>
         <ul class="steps">
-          <li>Ask for a max number (e.g., 5).</li>
-          <li>Use one loop to control the row count, and inside it print 1..row.</li>
-          <li>(Hint: You can print on the same line by using <span class="inline">end=' '</span>.)</li>
+          <li><b>Input:</b> <span class="inline">max_n</span> (int &gt;= 1).</li>
+          <li><b>Loops:</b> outer loop for each row from 1..max_n; inner loop prints numbers 1..row.</li>
+          <li><b>Output format:</b> numbers separated by a single space; no trailing space on each line.</li>
+          <li><b>Example (max_n = 5):</b>
+            <pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+          </li>
+          <li><b>Hint:</b> You can print on the same line using <span class="inline">end=' '</span>, then call <span class="inline">print()</span> once at the end of each row.</li>
         </ul>
         <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#printing">Printing</a></p>
       </section>
@@ -225,9 +358,25 @@ while running:
         <h3>11) Rock • Paper • Scissors (2-player)</h3>
         <p><b>Goal:</b> Ask Player 1 and Player 2 for their choices and print who wins.</p>
         <ul class="steps">
-          <li>Read two strings: <span class="inline">"rock"</span>/<span class="inline">"paper"</span>/<span class="inline">"scissors"</span>.</li>
-          <li>Use <span class="inline">if/elif</span> to decide the winner or tie.</li>
-          <li>Optional: Put the whole thing in a loop to play again until someone types <span class="inline">"quit"</span>.</li>
+          <li><b>Inputs:</b> two strings: <span class="inline">"rock"</span>, <span class="inline">"paper"</span>, or <span class="inline">"scissors"</span> (case-insensitive).</li>
+          <li><b>Rules:</b>
+            <ul>
+              <li>rock beats scissors</li>
+              <li>scissors beats paper</li>
+              <li>paper beats rock</li>
+            </ul>
+          </li>
+          <li><b>Output:</b> print exactly one line: <span class="inline">"Player 1 wins"</span>, <span class="inline">"Player 2 wins"</span>, or <span class="inline">"Tie"</span>.</li>
+          <li><b>Optional loop:</b> keep playing until someone types <span class="inline">"quit"</span>.</li>
+          <li><b>Examples:</b>
+            <pre><code>P1: rock
+P2: scissors
+Player 1 wins
+
+P1: paper
+P2: paper
+Tie</code></pre>
+          </li>
         </ul>
         <p class="links">See: <a href="index.html#conditions">Conditions</a> • <a href="index.html#loops">Loops</a></p>
       </section>
@@ -238,9 +387,16 @@ while running:
         <h3>12) Math Quiz (Optional: Random)</h3>
         <p><b>Goal:</b> Ask 5 math questions and keep score.</p>
         <ul class="steps">
-          <li>Use a loop (5 times). Each time, choose two numbers and ask the user to add them.</li>
-          <li>Compare the user’s answer to the correct answer; add 1 to score if correct.</li>
-          <li>At the end, print “You got X out of 5”.</li>
+          <li><b>Questions:</b> Ask exactly 5 addition questions like <span class="inline">What is a + b?</span></li>
+          <li><b>Numbers:</b> You can pick them yourself or use random (see below). Keep them small (1–10).</li>
+          <li><b>Answer check:</b> if the user’s integer answer equals <span class="inline">a + b</span>, print <span class="inline">"Correct!"</span> and add 1 to score; else print <span class="inline">"Nope, the answer was X."</span></li>
+          <li><b>Final line:</b> after 5 questions print <span class="inline">"You got X out of 5"</span> where <span class="inline">X</span> is the score.</li>
+          <li><b>Example (one question):</b>
+            <pre><code>What is 3 + 5? 8
+Correct!
+...
+You got 5 out of 5</code></pre>
+          </li>
         </ul>
         <div class="callout">
           <b>Random basics (optional):</b><br>
@@ -254,7 +410,6 @@ while running:
     <section class="card">
       <h2>Need a refresher?</h2>
       <p>Jump to notes: <a href="index.html#variables">Variables</a> • <a href="index.html#printing">Printing</a> • <a href="index.html#loops">Loops</a> • <a href="index.html#types">Type Conversion</a> • <a href="index.html#math">Math</a> • <a href="index.html#io">Input/Output</a> • <a href="index.html#conditions">Conditions &amp; Operators</a></p>
-      <p class="footer">Proud of your solution? Save a copy and share it on our class site!</p>
     </section>
   </div>
 </body>
