@@ -49,10 +49,21 @@
     .steps { margin: 8px 0 0 0; padding-left: 18px; }
     .steps li { margin: 6px 0; }
     .footer { color: var(--muted); font-size: .9rem; margin-top: 28px; }
+    /* Code Saver mini styles */
+    .control-row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .control-row label { font-size:.9rem; color: var(--muted); }
+    .field { background:#0b1024; color:var(--text); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:8px 10px; }
+    .field.small { padding:6px 8px; }
+    .btn { background: transparent; color: var(--accent); border:1px solid rgba(96,165,250,0.5); border-radius:10px; padding:8px 10px; cursor:pointer; }
+    .btn:hover { background: rgba(96,165,250,0.08); }
+    .btn.secondary { color: #86efac; border-color:#064e3b; }
+    .btn.warn { color:#fca5a5; border-color:#7f1d1d; }
   </style>
 </head>
 <body>
   <div class="wrap">
+    <a href="https://docs.google.com/document/d/1C0l49D3npkyLvhw1N58KIde-as9SZgYHXd-nrfE4HAY/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Class Notes Document: Copy your link and add it to this document for saving.</a>
+
     <h1>Python Challenges – Practice Hub</h1>
     <p class="subtitle">Pick a challenge, use your notes, and build it! Need a reminder? Jump back to <a href="index.html">Class Notes</a>.</p>
 
@@ -61,6 +72,44 @@
       <p>Each card is a bite-sized project. It tells you the goal, the concepts you’ll need, and a couple of hints. <b>No full solutions</b> — you’ve got this! ✅</p>
       <div class="callout">
         Tip: You can run these in a browser-based Python (Replit, Trinket, PythonTutor). See <a href="index.html">Class Notes</a> for examples of <span class="inline">variables</span>, <span class="inline">print()</span>, <span class="inline">loops</span>, <span class="inline">type conversion</span>, <span class="inline">math</span>, <span class="inline">input()</span>, and <span class="inline">conditions</span>.
+      </div>
+    </section>
+
+    <!-- Code Saver Panel -->
+    <section class="card" id="code-saver">
+      <h2>Save your code between classes</h2>
+      <p>Paste your Python here and save it under your name + challenge. You can load it later on any computer using the share link or by downloading a file.</p>
+      <div class="control-row">
+        <label for="cs-name">Name</label>
+        <input id="cs-name" class="field small" type="text" placeholder="First Last" />
+        <label for="cs-challenge">Challenge</label>
+        <select id="cs-challenge" class="field small">
+          <option value="1">1) Tip Calculator</option>
+          <option value="2">2) Even or Odd</option>
+          <option value="3">3) Counting Loop</option>
+          <option value="4">4) Repeat My Sentence</option>
+          <option value="5">5) Simple Guessing Game</option>
+          <option value="6">6) Countdown Timer</option>
+          <option value="7">7) Simple Bank Balance</option>
+          <option value="8">8) Multiplication Table</option>
+          <option value="9">9) Name Banner</option>
+          <option value="10">10) Number Pattern</option>
+          <option value="11">11) Rock • Paper • Scissors</option>
+          <option value="12">12) Math Quiz</option>
+        </select>
+      </div>
+      <textarea id="cs-code" class="field" rows="10" style="width:100%; margin-top:10px;" placeholder="# Paste your Python solution here...\n# Example: print(\"Hello\")"></textarea>
+      <div class="control-row" style="margin-top:10px;">
+        <button class="btn" id="cs-save">Save locally</button>
+        <button class="btn" id="cs-load">Load</button>
+        <button class="btn" id="cs-copy">Copy code</button>
+        <button class="btn" id="cs-link">Copy share link</button>
+        <button class="btn" id="cs-summary">Copy summary</button>
+        <button class="btn secondary" id="cs-download">Download .py</button>
+        <button class="btn warn" id="cs-clear">Clear local save</button>
+      </div>
+      <div class="callout" style="margin-top:10px;">
+        <b>How this works:</b> “Save locally” keeps your code in this browser only. “Copy share link” makes a link that <i>contains your code</i> so you can open it anywhere (don’t share secrets). “Download .py” saves a file you can upload or open later. No account needed.
       </div>
     </section>
 
@@ -412,5 +461,140 @@ You got 5 out of 5</code></pre>
       <p>Jump to notes: <a href="index.html#variables">Variables</a> • <a href="index.html#printing">Printing</a> • <a href="index.html#loops">Loops</a> • <a href="index.html#types">Type Conversion</a> • <a href="index.html#math">Math</a> • <a href="index.html#io">Input/Output</a> • <a href="index.html#conditions">Conditions &amp; Operators</a></p>
     </section>
   </div>
+  <script>
+    (function(){
+      const nameEl = document.getElementById('cs-name');
+      const chalEl = document.getElementById('cs-challenge');
+      const codeEl = document.getElementById('cs-code');
+
+      const STORAGE_PREFIX = 'code_saver_v1';
+      const keyFor = (name, chal) => `${STORAGE_PREFIX}:${(name||'').trim().toLowerCase()}|${String(chal||'').trim()}`;
+
+      function saveLocal(){
+        const name = nameEl.value.trim();
+        const chal = chalEl.value;
+        const code = codeEl.value;
+        if(!name){ alert('Please enter your name.'); return; }
+        if(!chal){ alert('Please choose a challenge.'); return; }
+        try{
+          localStorage.setItem(keyFor(name, chal), code);
+          alert('Saved locally.');
+        }catch(e){
+          alert('Could not save locally (storage might be full or blocked).');
+        }
+      }
+
+      function loadLocal(){
+        const name = nameEl.value.trim();
+        const chal = chalEl.value;
+        if(!name){ alert('Please enter your name to load.'); return; }
+        const data = localStorage.getItem(keyFor(name, chal));
+        if(data == null){ alert('No local save found for this name + challenge.'); return; }
+        codeEl.value = data;
+      }
+
+      function copyCode(){
+        codeEl.select();
+        document.execCommand('copy');
+      }
+
+      // Base64 encode/decode that supports Unicode
+      function encodeBase64(str){
+        return btoa(unescape(encodeURIComponent(str)));
+      }
+      function decodeBase64(b64){
+        return decodeURIComponent(escape(atob(b64)));
+      }
+
+      function copyShareLink(){
+        const name = nameEl.value.trim();
+        const chal = chalEl.value;
+        const code = codeEl.value;
+        if(!name){ alert('Please enter your name.'); return; }
+        if(!chal){ alert('Please choose a challenge.'); return; }
+        if(!code){ alert('Nothing to share — paste your code first.'); return; }
+        const params = new URLSearchParams({ name, chal });
+        const encoded = encodeBase64(code);
+        const url = `${location.origin}${location.pathname}?${params.toString()}#cs:${encoded}`;
+        navigator.clipboard.writeText(url).then(()=>{
+          alert('Share link copied to clipboard. Open it later to restore your code.');
+        }).catch(()=>{
+          // fallback
+          prompt('Copy this link:', url);
+        });
+      }
+
+      function copySummary(){
+        const name = nameEl.value.trim();
+        const chal = chalEl.value;
+        const code = codeEl.value;
+        if(!name){ alert('Please enter your name.'); return; }
+        if(!chal){ alert('Please choose a challenge.'); return; }
+        if(!code){ alert('Nothing to share — paste your code first.'); return; }
+        const chalText = chalEl.options[chalEl.selectedIndex]?.text || `Challenge ${chal}`;
+        const params = new URLSearchParams({ name, chal });
+        const encoded = encodeBase64(code);
+        const url = `${location.origin}${location.pathname}?${params.toString()}#cs:${encoded}`;
+        const summary = `${name} — ${chalText} — ${url}`;
+        navigator.clipboard.writeText(summary).then(()=>{
+          alert('Summary copied to clipboard.');
+        }).catch(()=>{
+          // fallback
+          prompt('Copy this summary:', summary);
+        });
+      }
+
+      function downloadFile(){
+        const name = (nameEl.value.trim() || 'student').replace(/[^a-z0-9-_]+/gi,'_');
+        const chal = chalEl.value;
+        const code = codeEl.value || '';
+        const blob = new Blob([code], { type: 'text/x-python' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `challenge-${chal}-${name}.py`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(()=>URL.revokeObjectURL(a.href), 5000);
+      }
+
+      function clearLocal(){
+        const name = nameEl.value.trim();
+        const chal = chalEl.value;
+        if(!name){ alert('Enter your name to clear the correct slot.'); return; }
+        const k = keyFor(name, chal);
+        if(localStorage.getItem(k) == null){ alert('Nothing saved for this name + challenge.'); return; }
+        if(confirm('Delete the local save for this name + challenge?')){
+          localStorage.removeItem(k);
+          alert('Local save cleared.');
+        }
+      }
+
+      // Wire up buttons
+      document.getElementById('cs-save').addEventListener('click', saveLocal);
+      document.getElementById('cs-load').addEventListener('click', loadLocal);
+      document.getElementById('cs-copy').addEventListener('click', copyCode);
+      document.getElementById('cs-link').addEventListener('click', copyShareLink);
+  document.getElementById('cs-summary').addEventListener('click', copySummary);
+      document.getElementById('cs-download').addEventListener('click', downloadFile);
+      document.getElementById('cs-clear').addEventListener('click', clearLocal);
+
+      // On load: check URL for share payload and restore
+      (function restoreFromUrl(){
+        try{
+          const q = new URLSearchParams(location.search);
+          const n = q.get('name');
+          const ch = q.get('chal');
+          if(n) nameEl.value = n;
+          if(ch) chalEl.value = ch;
+          if(location.hash.startsWith('#cs:')){
+            const payload = location.hash.slice(4);
+            const decoded = decodeBase64(payload);
+            codeEl.value = decoded;
+          }
+        }catch(e){ /* ignore */ }
+      })();
+    })();
+  </script>
 </body>
 </html>
