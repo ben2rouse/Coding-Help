@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Python Challenges – Practice Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#0f172a;          /* dark slate */
+      --card:#111827;        /* near-black */
+      --text:#e5e7eb;        /* light gray */
+      --muted:#9ca3af;       /* muted gray */
+      --accent:#60a5fa;      /* blue */
+      --green:#34d399;       /* green */
+      --orange:#fb923c;      /* orange */
+      --pink:#f472b6;        /* pink */
+      --yellow:#facc15;      /* yellow */
+      --red:#f87171;         /* red */
+    }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font:16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
+    .wrap { max-width: 980px; margin: 36px auto; padding: 0 20px; }
+    h1 { font-size: 2.2rem; margin: 0 0 6px; }
+    .subtitle { color: var(--muted); margin-bottom: 24px; }
+    h2 { margin: 28px 0 12px; font-size: 1.6rem; }
+    h3 { margin: 22px 0 10px; font-size: 1.15rem; color: var(--accent); }
+    p { margin: 10px 0; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; }
+    .card {
+      background: linear-gradient(180deg, #131a33 0%, var(--card) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 18px 18px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    }
+    .tag { display: inline-block; font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; margin-right: 6px; border: 1px solid rgba(255,255,255,0.15); color: var(--muted);}
+    .tag.blue{ color:#93c5fd; border-color:#1e3a8a;}
+    .tag.green{ color:#86efac; border-color:#064e3b;}
+    .tag.orange{ color:#fed7aa; border-color:#7c2d12;}
+    .tag.pink{ color:#fbcfe8; border-color:#831843;}
+    .tag.yellow{ color:#fde68a; border-color:#713f12;}
+    .callout { border-left: 4px solid var(--accent); background: rgba(96,165,250,0.08); padding: 10px 12px; border-radius: 10px; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    pre {
+      background: #0b1024; color: #e7eaf3; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 14px; overflow:auto; margin: 12px 0;
+    }
+    .inline { background: rgba(255,255,255,0.08); padding: 1px 6px; border-radius: 6px; }
+    a { color: var(--accent); text-decoration: none; }
+    .links { font-size:.9rem; color:var(--muted); margin-top:8px; }
+    .steps { margin: 8px 0 0 0; padding-left: 18px; }
+    .steps li { margin: 6px 0; }
+    .footer { color: var(--muted); font-size: .9rem; margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Python Challenges – Practice Hub</h1>
+    <p class="subtitle">Pick a challenge, use your notes, and build it! Need a reminder? Jump back to <a href="index.html">Class Notes</a>.</p>
+
+    <section class="card">
+      <h2>How to use this page</h2>
+      <p>Each card is a bite-sized project. It tells you the goal, the concepts you’ll need, and a couple of hints. <b>No full solutions</b> — you’ve got this! ✅</p>
+      <div class="callout">
+        Tip: You can run these in a browser-based Python (Replit, Trinket, PythonTutor). See <a href="index.html">Class Notes</a> for examples of <span class="inline">variables</span>, <span class="inline">print()</span>, <span class="inline">loops</span>, <span class="inline">type conversion</span>, <span class="inline">math</span>, <span class="inline">input()</span>, and <span class="inline">conditions</span>.
+      </div>
+    </section>
+
+    <!-- ROW 1 -->
+    <div class="grid">
+      <!-- Tip Calculator -->
+      <section class="card">
+        <span class="tag blue">Variables</span><span class="tag green">Math</span><span class="tag">Type Conversion</span><span class="tag">Printing</span>
+        <h3>1) Tip Calculator</h3>
+        <p><b>Goal:</b> Ask for a bill total and a tip percent. Calculate the tip and the final total. Print both nicely.</p>
+        <ul class="steps">
+          <li>Get two inputs: bill (like <span class="inline">"42.50"</span>) and tip percent (like <span class="inline">"18"</span>).</li>
+          <li>Convert to numbers with <span class="inline">float()</span> or <span class="inline">int()</span>.</li>
+          <li>Compute: <span class="inline">tip = bill * (percent/100)</span>, <span class="inline">total = bill + tip</span>.</li>
+          <li>Print the tip and total with labels.</li>
+        </ul>
+        <p class="links">See: <a href="index.html#types">Type Conversion</a> • <a href="index.html#math">Math</a> • <a href="index.html#printing">Printing</a></p>
+      </section>
+
+      <!-- Even or Odd -->
+      <section class="card">
+        <span class="tag blue">Variables</span><span class="tag green">Math</span><span class="tag">Conditions</span>
+        <h3>2) Even or Odd Checker</h3>
+        <p><b>Goal:</b> Ask for a number and tell the user if it’s even or odd.</p>
+        <ul class="steps">
+          <li>Input a number → convert to <span class="inline">int</span>.</li>
+          <li>Use the <b>modulo</b> operator <span class="inline">%</span> to find the remainder when dividing by 2.</li>
+          <li>If <span class="inline">n % 2 == 0</span> → “even”, else “odd”.</li>
+        </ul>
+        <div class="callout">
+          <b>Reminder:</b> <span class="inline">a % b</span> gives the <i>remainder</i>. Example: <span class="inline">7 % 2</span> is <span class="inline">1</span>.
+        </div>
+        <p class="links">See: <a href="index.html#math">Math</a> • <a href="index.html#conditions">Conditions</a></p>
+      </section>
+
+      <!-- Counting Loop -->
+      <section class="card">
+        <span class="tag orange">Loops</span><span class="tag">Printing</span>
+        <h3>3) Counting Loop</h3>
+        <p><b>Goal:</b> Print “Counting: 1” up to “Counting: 10”.</p>
+        <ul class="steps">
+          <li>Use a <span class="inline">for</span> loop with <span class="inline">range(1, 11)</span>.</li>
+          <li>Print the message each time through the loop.</li>
+        </ul>
+        <pre><code># Hint pattern (not the full answer):
+for i in range(START, STOP):
+    print("Counting:", i)</code></pre>
+        <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#printing">Printing</a></p>
+      </section>
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="grid">
+      <!-- Repeat Sentence -->
+      <section class="card">
+        <span class="tag orange">Loops</span><span class="tag blue">Variables</span><span class="tag">Type Conversion</span>
+        <h3>4) Repeat My Sentence</h3>
+        <p><b>Goal:</b> Ask the user for a short sentence and how many times to repeat it. Then print it that many times.</p>
+        <ul class="steps">
+          <li>Get sentence (string) and count (convert to <span class="inline">int</span>).</li>
+          <li>Loop with <span class="inline">range(count)</span> and print the sentence.</li>
+        </ul>
+        <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#types">Type Conversion</a></p>
+      </section>
+
+      <!-- Guessing Game -->
+      <section class="card">
+        <span class="tag orange">Loops</span><span class="tag">Conditions</span><span class="tag blue">Variables</span>
+        <h3>5) Simple Guessing Game</h3>
+        <p><b>Goal:</b> Pick a secret number in your code. Keep asking the user to guess until they get it right.</p>
+        <ul class="steps">
+          <li>Make <span class="inline">secret = 7</span> (or any number).</li>
+          <li>Use a <span class="inline">while</span> loop that runs while the guess is not equal to the secret.</li>
+          <li>Tell the user “Too high” / “Too low” each time.</li>
+        </ul>
+        <div class="callout">
+          <b>How while works:</b> It keeps repeating <i>while the condition is True</i>. Change something inside the loop so it can eventually stop.
+        </div>
+        <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#conditions">Conditions</a> • <a href="index.html#io">Input</a></p>
+      </section>
+
+      <!-- Countdown -->
+      <section class="card">
+        <span class="tag orange">Loops</span><span class="tag">Printing</span>
+        <h3>6) Countdown Timer</h3>
+        <p><b>Goal:</b> Ask the user for a start number and count down to 1, then print “Blast off!”.</p>
+        <ul class="steps">
+          <li>Convert the input to <span class="inline">int</span>.</li>
+          <li>Use <span class="inline">range(start, 0, -1)</span> to go down by 1.</li>
+          <li>Print each number; after the loop, print “Blast off!”.</li>
+        </ul>
+        <div class="callout">
+          <b>range(start, stop, step):</b> stop is not included. Use a <b>negative step</b> (like <span class="inline">-1</span>) to count backwards.
+        </div>
+        <p class="links">See: <a href="index.html#loops">Loops</a></p>
+      </section>
+    </div>
+
+    <!-- ROW 3 -->
+    <div class="grid">
+      <!-- Bank (simplified) -->
+      <section class="card">
+        <span class="tag blue">Variables</span><span class="tag orange">Loops</span><span class="tag">Conditions</span><span class="tag green">Math</span>
+        <h3>7) Simple Bank Balance</h3>
+        <p><b>Goal:</b> Start with a balance (e.g., 100). Show a menu to <i>check</i>, <i>deposit</i>, <i>withdraw</i>, or <i>exit</i>. Repeat until exit.</p>
+        <ul class="steps">
+          <li>Use a <span class="inline">while</span> loop to keep showing the menu.</li>
+          <li><b>1</b> → print balance, <b>2</b> → add amount, <b>3</b> → subtract amount (if enough money), <b>4</b> → break the loop.</li>
+        </ul>
+        <pre><code># Mini pattern:
+running = True
+while running:
+    # print menu and read choice
+    # use if/elif/else to handle actions
+    # set running = False to exit</code></pre>
+        <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#conditions">Conditions</a> • <a href="index.html#math">Math</a></p>
+      </section>
+
+      <!-- Multiplication Table -->
+      <section class="card">
+        <span class="tag orange">Loops</span><span class="tag green">Math</span>
+        <h3>8) Multiplication Table</h3>
+        <p><b>Goal:</b> Ask for a number (like 7) and print its times table from 1 to 10.</p>
+        <ul class="steps">
+          <li>Loop from 1 to 10 with <span class="inline">range(1, 11)</span>.</li>
+          <li>Compute and print <span class="inline">n * i</span> each time.</li>
+        </ul>
+        <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#math">Math</a></p>
+      </section>
+
+      <!-- Name Banner -->
+      <section class="card">
+        <span class="tag blue">Variables</span><span class="tag orange">Loops</span><span class="tag">Printing</span>
+        <h3>9) Name Banner</h3>
+        <p><b>Goal:</b> Ask the user for their name and a number. Print a “banner” of their name that many lines tall.</p>
+        <ul class="steps">
+          <li>Get <span class="inline">name</span> and <span class="inline">height</span> (int).</li>
+          <li>Use a loop to print the name on each line. Try adding decorations like <span class="inline">*** NAME ***</span>.</li>
+        </ul>
+        <p class="links">See: <a href="index.html#printing">Printing</a> • <a href="index.html#loops">Loops</a></p>
+      </section>
+    </div>
+
+    <!-- ROW 4 -->
+    <div class="grid">
+      <!-- Number Pattern -->
+      <section class="card">
+        <span class="tag orange">Loops</span><span class="tag green">Math</span>
+        <h3>10) Number Pattern</h3>
+        <p><b>Goal:</b> Print a pattern like: <code>1</code>, <code>1 2</code>, <code>1 2 3</code>, up to a number the user chooses.</p>
+        <ul class="steps">
+          <li>Ask for a max number (e.g., 5).</li>
+          <li>Use one loop to control the row count, and inside it print 1..row.</li>
+          <li>(Hint: You can print on the same line by using <span class="inline">end=' '</span>.)</li>
+        </ul>
+        <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#printing">Printing</a></p>
+      </section>
+
+      <!-- Rock, Paper, Scissors (no random optional) -->
+      <section class="card">
+        <span class="tag">Conditions</span><span class="tag orange">Loops</span><span class="tag blue">Variables</span>
+        <h3>11) Rock • Paper • Scissors (2-player)</h3>
+        <p><b>Goal:</b> Ask Player 1 and Player 2 for their choices and print who wins.</p>
+        <ul class="steps">
+          <li>Read two strings: <span class="inline">"rock"</span>/<span class="inline">"paper"</span>/<span class="inline">"scissors"</span>.</li>
+          <li>Use <span class="inline">if/elif</span> to decide the winner or tie.</li>
+          <li>Optional: Put the whole thing in a loop to play again until someone types <span class="inline">"quit"</span>.</li>
+        </ul>
+        <p class="links">See: <a href="index.html#conditions">Conditions</a> • <a href="index.html#loops">Loops</a></p>
+      </section>
+
+      <!-- Math Quiz (optional random) -->
+      <section class="card">
+        <span class="tag green">Math</span><span class="tag orange">Loops</span><span class="tag">Conditions</span>
+        <h3>12) Math Quiz (Optional: Random)</h3>
+        <p><b>Goal:</b> Ask 5 math questions and keep score.</p>
+        <ul class="steps">
+          <li>Use a loop (5 times). Each time, choose two numbers and ask the user to add them.</li>
+          <li>Compare the user’s answer to the correct answer; add 1 to score if correct.</li>
+          <li>At the end, print “You got X out of 5”.</li>
+        </ul>
+        <div class="callout">
+          <b>Random basics (optional):</b><br>
+          <code>import random</code><br>
+          <code>a = random.randint(1, 10)</code>  ← a random integer from 1 to 10.
+        </div>
+        <p class="links">See: <a href="index.html#loops">Loops</a> • <a href="index.html#math">Math</a> • <a href="index.html#io">Input</a></p>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Need a refresher?</h2>
+      <p>Jump to notes: <a href="index.html#variables">Variables</a> • <a href="index.html#printing">Printing</a> • <a href="index.html#loops">Loops</a> • <a href="index.html#types">Type Conversion</a> • <a href="index.html#math">Math</a> • <a href="index.html#io">Input/Output</a> • <a href="index.html#conditions">Conditions &amp; Operators</a></p>
+      <p class="footer">Proud of your solution? Save a copy and share it on our class site!</p>
+    </section>
+  </div>
+</body>
+</html>
