@@ -4,48 +4,7 @@
   <meta charset="UTF-8" />
   <title>Python Basics – Class Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root{
-      --bg:#0f172a;          /* dark slate */
-      --card:#111827;        /* near-black */
-      --text:#e5e7eb;        /* light gray */
-      --muted:#9ca3af;       /* muted gray */
-      --accent:#60a5fa;      /* blue */
-      --green:#34d399;       /* green */
-      --orange:#fb923c;      /* orange */
-      --pink:#f472b6;        /* pink */
-      --yellow:#facc15;      /* yellow */
-      --red:#f87171;         /* red */
-    }
-    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font:16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
-    .wrap { max-width: 980px; margin: 36px auto; padding: 0 20px; }
-    h1 { font-size: 2.2rem; margin: 0 0 6px; }
-    .subtitle { color: var(--muted); margin-bottom: 24px; }
-    h2 { margin: 28px 0 12px; font-size: 1.6rem; }
-    h3 { margin: 22px 0 10px; font-size: 1.15rem; color: var(--accent); }
-    p { margin: 10px 0; }
-    .card {
-      background: linear-gradient(180deg, #131a33 0%, var(--card) 100%);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px; padding: 18px 18px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-      margin: 16px 0 22px;
-    }
-    .tag { display: inline-block; font-size: 0.8rem; padding: 2px 8px; border-radius: 999px; margin-right: 6px; border: 1px solid rgba(255,255,255,0.15); color: var(--muted);}
-    .callout { border-left: 4px solid var(--accent); background: rgba(96,165,250,0.08); padding: 10px 12px; border-radius: 10px; }
-    .ops { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 10px; }
-    .ops .chip {
-      border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:10px 12px; background:rgba(255,255,255,0.03);
-    }
-    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
-    pre {
-      background: #0b1024; color: #e7eaf3; border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px; padding: 14px; overflow:auto; margin: 12px 0;
-    }
-    .inline { background: rgba(255,255,255,0.08); padding: 1px 6px; border-radius: 6px; }
-    .footer { color: var(--muted); font-size: .9rem; margin-top: 28px; }
-    a { color: var(--accent); text-decoration: none; }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrap">
@@ -54,7 +13,20 @@
 
   <!-- Navigation Bar -->
   <nav style="margin-bottom: 24px;">
-    <a href="challenges.html" 
+    <a href="https://www.onlineide.pro/playground/python" target="_blank"
+       style="background-color: var(--accent);
+              color: white;
+              padding: 8px 16px;
+              border-radius: 8px;
+              text-decoration: none;
+              font-weight: 600;
+              transition: background 0.2s;">
+      🧩 Go to OnlineIDE.pro
+    </a>
+    <span style="color: var(--muted); margin-left: 10px;">Practice problems and mini-projects</span>
+    <br />
+    <br />
+    <a href="" 
        style="background-color: var(--accent);
               color: white;
               padding: 8px 16px;
@@ -65,18 +37,6 @@
       🧩 Go to Challenges
     </a>
     <span style="color: var(--muted); margin-left: 10px;">Practice problems and mini-projects</span>
-    <br />
-    <a href="https://www.onlineide.pro/playground/python" 
-       target="_blank" style="background-color: var(--accent);
-              color: white;
-              padding: 8px 16px;
-              border-radius: 8px;
-              text-decoration: none;
-              font-weight: 600;
-              transition: background 0.2s;">
-      🧩 Go OnlineIDE.pro
-    </a>
-    
   </nav>
 
     <!-- VARIABLES -->
