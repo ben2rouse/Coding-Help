@@ -4,81 +4,25 @@
   <meta charset="UTF-8" />
   <title>Python Challenges – Practice Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root{
-      --bg:#0f172a;          /* dark slate */
-      --card:#111827;        /* near-black */
-      --text:#e5e7eb;        /* light gray */
-      --muted:#9ca3af;       /* muted gray */
-      --accent:#60a5fa;      /* blue */
-      --green:#34d399;       /* green */
-      --orange:#fb923c;      /* orange */
-      --pink:#f472b6;        /* pink */
-      --yellow:#facc15;      /* yellow */
-      --red:#f87171;         /* red */
-    }
-    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font:16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
-    .wrap { max-width: 980px; margin: 36px auto; padding: 0 20px; }
-    h1 { font-size: 2.2rem; margin: 0 0 6px; }
-    .subtitle { color: var(--muted); margin-bottom: 24px; }
-    h2 { margin: 28px 0 12px; font-size: 1.6rem; }
-    h3 { margin: 22px 0 10px; font-size: 1.15rem; color: var(--accent); }
-    p { margin: 10px 0; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; }
-    .card {
-      background: linear-gradient(180deg, #131a33 0%, var(--card) 100%);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px; padding: 18px 18px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-    }
-    .tag { display: inline-block; font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; margin-right: 6px; border: 1px solid rgba(255,255,255,0.15); color: var(--muted);}
-    .tag.blue{ color:#93c5fd; border-color:#1e3a8a;}
-    .tag.green{ color:#86efac; border-color:#064e3b;}
-    .tag.orange{ color:#fed7aa; border-color:#7c2d12;}
-    .tag.pink{ color:#fbcfe8; border-color:#831843;}
-    .tag.yellow{ color:#fde68a; border-color:#713f12;}
-    .callout { border-left: 4px solid var(--accent); background: rgba(96,165,250,0.08); padding: 10px 12px; border-radius: 10px; }
-    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
-    pre {
-      background: #0b1024; color: #e7eaf3; border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px; padding: 14px; overflow:auto; margin: 12px 0;
-    }
-    .inline { background: rgba(255,255,255,0.08); padding: 1px 6px; border-radius: 6px; }
-    a { color: var(--accent); text-decoration: none; }
-    .links { font-size:.9rem; color:var(--muted); margin-top:8px; }
-    .steps { margin: 8px 0 0 0; padding-left: 18px; }
-    .steps li { margin: 6px 0; }
-    .footer { color: var(--muted); font-size: .9rem; margin-top: 28px; }
-    /* Code Saver mini styles */
-    .control-row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-    .control-row label { font-size:.9rem; color: var(--muted); }
-    .field { background:#0b1024; color:var(--text); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:8px 10px; }
-    .field.small { padding:6px 8px; }
-    .btn { background: transparent; color: var(--accent); border:1px solid rgba(96,165,250,0.5); border-radius:10px; padding:8px 10px; cursor:pointer; }
-    .btn:hover { background: rgba(96,165,250,0.08); }
-    .btn.secondary { color: #86efac; border-color:#064e3b; }
-    .btn.warn { color:#fca5a5; border-color:#7f1d1d; }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrap">
-    <a href="https://docs.google.com/document/d/1C0l49D3npkyLvhw1N58KIde-as9SZgYHXd-nrfE4HAY/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Class Notes Document: Copy your link and add it to this document for saving.</a>
-
     <h1>Python Challenges – Practice Hub</h1>
     <p class="subtitle">Pick a challenge, use your notes, and build it! Need a reminder? Jump back to <a href="index.html">Class Notes</a>.</p>
 
-    <section class="card">
-      <h2>How to use this page</h2>
-      <p>Each card is a bite-sized project. It tells you the goal, the concepts you’ll need, and a couple of hints. <b>No full solutions</b> — you’ve got this! ✅</p>
-      <div class="callout">
-        Tip: You can run these in a browser-based Python (Replit, Trinket, PythonTutor). See <a href="index.html">Class Notes</a> for examples of <span class="inline">variables</span>, <span class="inline">print()</span>, <span class="inline">loops</span>, <span class="inline">type conversion</span>, <span class="inline">math</span>, <span class="inline">input()</span>, and <span class="inline">conditions</span>.
-      </div>
-    </section>
-
     <!-- Code Saver Panel -->
     <section class="card" id="code-saver">
-      <h2>Save your code between classes</h2>
-      <p>Paste your Python here. Then use <b>Copy Formatted Summary</b> to copy your <i>Name</i> + <i>Challenge</i> + a clickable <i>Code Link</i> (perfect for the class Google Doc), or use <b>Copy Code</b> to copy just the code.</p>
+      <h2>How to save your code for later</h2>
+      <p>Use this page to save and share your code between classes.</p>
+      <ol>
+        <li>Write your code in <b><a href="https://www.onlineide.pro/playground/python" target="_blank" rel="noopener noreferrer">onlineide.pro</a></b>. Select all and copy it ($CTRL + C$).</li>
+        <li>Paste it into the Code Saver text area below.</li>
+        <li>Click <b>Copy Formatted Summary</b> to put your Name + Challenge + Code Link on your clipboard.</li>
+        <li>Click the <b>Google Doc</b> button, then paste ($CTRL + V$) into the class Google Doc.</li>
+        <li>When you return, open the Google Doc and click your <b>Code Link</b>. Your code will load back into the text area here.</li>
+        <li>Click <b>Copy Code</b> and paste it back into <b>onlineide.pro</b> to continue coding.</li>
+      </ol>
       <div class="control-row">
         <label for="cs-name">Name</label>
         <input id="cs-name" class="field small" type="text" placeholder="First Last" />
@@ -97,15 +41,14 @@
           <option value="11">11) Rock • Paper • Scissors</option>
           <option value="12">12) Math Quiz</option>
         </select>
+        <label for="cs-custom">Custom name (optional)</label>
+        <input id="cs-custom" class="field small" type="text" placeholder="e.g., Extra Practice: Loops" />
       </div>
       <textarea id="cs-code" class="field" rows="10" style="width:100%; margin-top:10px;" placeholder="# Paste your Python solution here...\n# Example: print(\"Hello\")"></textarea>
       <div class="control-row" style="margin-top:10px;">
         <button class="btn" id="cs-copy">Copy code</button>
         <button class="btn" id="cs-formatted-summary">Copy Formatted Summary</button>
-        <a href="https://docs.google.com/document/d/1C0l49D3npkyLvhw1N58KIde-as9SZgYHXd-nrfE4HAY/edit?usp=sharing" class="btn">Google Doc</a>
-      </div>
-      <div class="callout" style="margin-top:10px;">
-        <b>How this works:</b> The formatted summary includes your name, the challenge title, and a <i>Code Link</i> that restores your code when opened. Paste it into the class Google Doc so you can resume later from any computer.
+        <a href="https://docs.google.com/document/d/1C0l49D3npkyLvhw1N58KIde-as9SZgYHXd-nrfE4HAY/edit?usp=sharing" target="_blank" class="btn" style="font-size: 12px;">Google Doc</a>
       </div>
     </section>
 
@@ -459,9 +402,10 @@ You got 5 out of 5</code></pre>
   </div>
   <script>
     (function(){
-      const nameEl = document.getElementById('cs-name');
-      const chalEl = document.getElementById('cs-challenge');
-      const codeEl = document.getElementById('cs-code');
+  const nameEl = document.getElementById('cs-name');
+  const chalEl = document.getElementById('cs-challenge');
+  const customEl = document.getElementById('cs-custom');
+  const codeEl = document.getElementById('cs-code');
 
       function copyCode(){
         codeEl.select();
@@ -479,12 +423,14 @@ You got 5 out of 5</code></pre>
       async function copyFormattedSummary(){
         const name = nameEl.value.trim();
         const chal = chalEl.value;
+        const custom = (customEl?.value || '').trim();
         const code = codeEl.value;
         if(!name){ alert('Please enter your name.'); return; }
         if(!chal){ alert('Please choose a challenge.'); return; }
         if(!code){ alert('Nothing to share — paste your code first.'); return; }
-        const chalText = chalEl.options[chalEl.selectedIndex]?.text || `Challenge ${chal}`;
+        const chalText = custom || (chalEl.options[chalEl.selectedIndex]?.text) || `Challenge ${chal}`;
         const params = new URLSearchParams({ name, chal });
+        if(custom){ params.set('title', custom); }
         const encoded = encodeBase64(code);
         const url = `${location.origin}${location.pathname}?${params.toString()}#cs:${encoded}`;
         const html = `${name} — ${chalText} — <a href="${url}">Code Link</a>`;
@@ -531,8 +477,10 @@ You got 5 out of 5</code></pre>
           const q = new URLSearchParams(location.search);
           const n = q.get('name');
           const ch = q.get('chal');
+          const t = q.get('title');
           if(n) nameEl.value = n;
           if(ch) chalEl.value = ch;
+          if(t && customEl) customEl.value = t;
           if(location.hash.startsWith('#cs:')){
             const payload = location.hash.slice(4);
             const decoded = decodeBase64(payload);
